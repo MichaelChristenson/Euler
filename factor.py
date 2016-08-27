@@ -28,3 +28,48 @@ def disassemble(num):
     for i in a:
         b += [int(i)]
     return b
+
+def reassemble(parts):
+    a = 0
+    for i in parts:
+        a += i
+        a *= 10
+    return a // 10
+
+def permute(seed):
+    if len(seed) == 1:
+        return [[seed[0]]]
+    ret = []
+    for i in range(len(seed)):
+        sub = permute(seed[:i]+seed[i+1:])
+        for j in sub:
+            ret += [[seed[i]] + j]
+    return ret
+
+def unique(seed):
+    a = []
+    for i in seed:
+        if not i in a:
+            a += [i]
+    return a
+
+def simplify(num,den):
+    a = num
+    b = den
+    reverse = False
+    if a > b:
+        reverse = True
+        a, b = b, a
+    num_fac = factor(num)
+    den_fac = factor(num)
+    for i in range(len(num_fac)):
+        for j in range(len(den_fac)):
+            if den_fac[j] == num_fac[i]:
+                den_fac[j] = 0
+                a //= num_fac[i]
+                b //= num_fac[i]
+    if reverse:
+        x = a
+        a = b
+        b = x
+    return a,b
