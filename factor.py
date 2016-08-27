@@ -73,3 +73,23 @@ def simplify(num,den):
         a = b
         b = x
     return a,b
+
+def factorial(num):
+    ret = 1
+    for i in range(num):
+        ret *= i + 1
+    return ret
+
+def to_binary(num):
+    dum = num
+    ret = ''
+    while dum > 0:
+        ret = str(dum % 2) + ret
+        dum //= 2
+    return ret
+
+def palindrome(string):
+    ret = True
+    for i in range(len(string)):
+        ret = ret and string[i] == string[-1 - i]
+    return ret
