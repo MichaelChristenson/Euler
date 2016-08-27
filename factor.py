@@ -21,3 +21,10 @@ def prime(num):
         if num % i == 0:
             return False
     return True
+
+def disassemble(num):
+    a = str(num)
+    b = []
+    for i in a:
+        b += [int(i)]
+    return b
